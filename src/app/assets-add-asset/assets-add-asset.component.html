@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Add Asset</h2>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <form [formGroup]="addAssetForm"
+              (ngSubmit)="onSubmit(addAssetForm.value)">
+              <div class="form-group">
+                <label for="name">Asset Name</label>
+                <input type="text" class="form-control" name="name"  placeholder="Name" 
+                       [formControl]="addAssetForm.controls['name']">
+                
+              </div>
+              <div class="form-group">
+                <label for="value">Value</label>
+                <input type="text" class="form-control" name="value" placeholder="Value"
+                       [formControl]="addAssetForm.controls['value']">
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+      </div>
+  </div>
+</div>

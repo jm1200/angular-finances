@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {FormsModule} from '@angular/forms';
+import {FormsModule, FormBuilder, ReactiveFormsModule} from '@angular/forms';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -17,8 +17,15 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
 import { AuthService } from './services/auth.service';
+import { ProfileComponent } from './profile/profile.component';
+import { AssetsAddAssetComponent} from './assets-add-asset/assets-add-asset.component';
+
+import {AngularFirestoreModule} from 'angularfire2/firestore';
+
+import { LiabilitiesComponent } from './liabilities/liabilities.component';
+
+import {DataService} from './services/data.service';
 
 
 @NgModule({
@@ -27,19 +34,28 @@ import { AuthService } from './services/auth.service';
     NavbarComponent,
     HomeComponent,
     AssetsComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    AssetsAddAssetComponent,
+    LiabilitiesComponent,
+    
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    
+   
+    
 
   ],
-  providers: [AuthService],
+  providers: [AuthService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

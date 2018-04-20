@@ -1,0 +1,40 @@
+
+<div class="container margin-top">
+  <div class="row">
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+          <!-- <img class="card-img-top" src="" alt="Card image cap"> -->
+          <div class="card-body">
+            <h5 class="card-title">{{af.user_displayName || "Edit Profile to input name"}}</h5>
+            <p class="card-text">{{af.user_email}}</p>
+            <button class="btn btn-primary" (click)="showForm()">Edit Profile</button>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-8 offset-md-1" *ngIf="showUpdateForm">
+      <h2>Update Profile</h2>
+      <form [formGroup]="updateProfileForm" 
+            class="form-inline"
+            (ngSubmit)="onSubmit(updateProfileForm.value)"
+            >
+          <div class="form-group">
+            <label for="displayName">Display Name:</label>
+            <input type="text" 
+                   class="form-control mx-sm-3" 
+                   name="displayName"
+                   [formControl]="updateProfileForm.controls['displayName']"
+                   placeholder="{{af.user_displayName || 'enter name'}}">
+            
+          </div>
+          <button class="btn btn-primary" type="submit">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

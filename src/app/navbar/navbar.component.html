@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-  <a href="#" class="navbar-brand">Finances</a>
+  <a routerLink="/home"  class="navbar-brand">Finances</a>
   <button type="button" 
           class="btn btn-outline-primary navbar-toggler" 
           (click)="isCollapsed = !isCollapsed"
@@ -8,15 +8,24 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div id="collapseMenu" class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto" *ngIf="af.isLoggedIn">
           <li class="navbar-item">
             <a routerLink="/home" class="nav-link">Home</a>
           </li>
+
           <li class="navbar-item">
-            <a routerLink="/assets" class="nav-link">Assets</a>
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-dark nav-link" id="dropdownBasic1" ngbDropdownToggle>Assets</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button class="dropdown-item" routerLink="/assets" >Home</button>
+                  <button class="dropdown-item" routerLink="/addAsset" >Add Asset</button>
+                  <button class="dropdown-item">Something else is here</button>
+                </div>
+              </div>
           </li>
+
           <li class="navbar-item">
-            <a href="#" class="nav-link">Liabilities</a>
+            <a routerLink="/liabilities" class="nav-link">Liabilities</a>
           </li>
           <li class="navbar-item">
             <a href="#" class="nav-link">Income</a>
@@ -24,9 +33,21 @@
           <li class="navbar-item">
             <a href="#" class="nav-link">Expenses</a>
           </li>
-          <li class="navbar-item">
-            <a href="#" class="nav-link" (click)="logout()">logout</a>
-          </li>
+         
+      </ul>
+      <ul class="navbar-nav">
+        <li class="navbar-item" *ngIf="af.isLoggedIn" >
+            <a routerLink="/profile" class="nav-link">{{af.user_displayName || af.user_email}}</a>
+        </li>
+        <li class="navbar-item" *ngIf="af.isLoggedIn" >
+            <a routerLink="/profile" class="nav-link">Profile</a>
+        </li>
+        <li class="navbar-item" >
+          <a routerLink="/login" class="nav-link" *ngIf="!af.isLoggedIn">Login/Signup</a>
+        </li>
+        <li class="navbar-item">
+          <a href="" class="nav-link" (click)="logout($event)" *ngIf="af.isLoggedIn">Logout</a>
+        </li>
       </ul>
   </div>
 </nav>

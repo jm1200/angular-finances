@@ -1,33 +1,73 @@
-<form name="userform" method="post" #formCtrl="ngForm">
+<div class="container">
+  <div class="row col-md-6 offset-md-3">
 
-  <div class="form-group row">
-    <label class="col-sm-3 col-form-label" for="email">Email</label>
-    <div class="col-sm-9">
-      <input name="email" type="text" class="form-control"
-        [(ngModel)]="user.email">
+    <div class="container">
+        <div class="row">
+            <h1>Login</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <form name="userform" #formCtrl="ngForm">
+      
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="email">Email</label>
+                <div class="col-sm-9">
+                  <input name="email" type="text" class="form-control"
+                    [(ngModel)]="email">
+                </div>
+              </div>
+            
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label" for="password">Password</label>
+                <div class="col-sm-9">
+                  <input name="password"type="Password" class="form-control"
+                  [(ngModel)]="password">
+                </div>
+              </div>
+            
+              <div class="row">
+                
+                  <button type="buton" class="btn btn-primary btn-block" 
+                    style="margin-bottom: 20px" 
+                    (click)="login(email, password)" 
+                    [disabled]="formCtrl.form.invalid">
+            
+                    Login
+                  
+                  </button>
+                
+              </div>
+              
+              <div class="row justify-content-center">
+                <p>No account? <a href="" (click)="createAccount(email, password, $event)">Create account</a> or, </p>
+              </div>
+
+              <div class="row">
+                
+                  <button type="button" class="btn btn-primary btn-block" 
+                    style="margin-bottom: 20px" 
+                    (click)="loginWithGoogle($event)" 
+                    [disabled]="formCtrl.form.invalid">
+            
+                    Login/Signup with Google
+                  
+                  </button>
+                
+              </div>
+            
+              
+            </form>
+          </div>
+    </div>
+    
+    
+    <div class="row" *ngIf="af.user | async as user">
+      hello, {{user.displayName}}
+
     </div>
   </div>
+</div>
 
-  <div class="form-group row">
-    <label class="col-sm-3 col-form-label" for="password">Password</label>
-    <div class="col-sm-9">
-      <input name="password"type="Password" class="form-control"
-        [(ngModel)]="user.password">
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-9 offset-sm-3">
-      <button type="buton" class="btn btn-primary btn-block" 
-        style="margin-bottom: 20px" 
-        (click)="signInWithEmail()" 
-        [disabled]="formCtrl.form.invalid">
-
-         Login with Email
-       
-       </button>
-    </div>
-  </div>
-
-  
-</form>

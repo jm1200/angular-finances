@@ -1,3 +1,12 @@
-<p>
-  assets works!
-</p>
+<div class="container">
+  <div class="row">
+    TEST TEST TEST
+    <div>
+        <ul class="list-group" *ngFor="let asset of assets">
+            <li class="list-group-item">
+              {{asset.name}} : {{asset.uid}} : {{asset.id}}
+            </li>
+          </ul>
+    </div>
+  </div>
+</div>
